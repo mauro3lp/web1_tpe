@@ -1,6 +1,92 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10em;
+}
+
+/* #region Header */
+
+header {
+  padding: 2em 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+  align-content: center;
+}
+.navbar {
+  display: flex;
+  align-content: center;
+}
+.navbar ul {
+  display: flex;
+  flex-direction: row;
+  gap: 2em;
+  list-style: none;
+  height: fit-content;
+}
+.navbar li {
+  height: fit-content;
+}
+
+/* #endregion Header */
+
+/* #region Footer */
+
+footer {
+  padding-bottom: 1em;
+}
+.autores {
+  display: flex;
+  flex-direction: row;
+}
+
+/* #endregion Footer */
+
+/* #region Home */
+
+.introduccion {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  gap: 2em;
+  height: 15em;
+}
+
+/* #endregion Home */
+
+/* #region Catalogo */
+
+.listaCatalogo {
+  padding: 2em 0;
+}
+
+.producto {
+  border: 2px solid black;
+  margin-bottom: 1em;
+  padding: 0 0.3em;
+}
+.descripcionTela {
+  display: flex;
+  flex-direction: row;
+}
+
+/* #endregion Catalogo */
+
+/* #region Contacto */
+
 input:valid {
   background-color: green;
 }
 input:invalid {
   background-color: brown;
 }
+
+/* #endregion Contacto */

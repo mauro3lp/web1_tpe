@@ -1,108 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/estilos/header_footer.css" />
-    <link rel="stylesheet" href="/estilos/estilos.css" />
-    <title>Contacto</title>
-  </head>
-  <body>
-    <header>
-      <h1>El titulo de mi página</h1>
-      <nav class="navbar">
-        <ul>
-          <li><a href="/index.html">Inicio</a></li>
-          <li><a href="/catalogo.html">Catalogo</a></li>
-          <li><a href="/contacto.html">Contacto</a></li>
-        </ul>
-      </nav>
-    </header>
-    <main>
-      <!-- Aca va a ir el contenido principal -->
-      <form action="">
-        <div>
-          <label for="nombre">Nombre:</label>
-          <input type="text" id="nombre" required />
-        </div>
-        <div>
-          <label for="email">Email:</label>
-          <input
-            type="email"
-            id="email"
-            required
-            pattern=".+@.+\.com"
-            size="30"
-          />
-        </div>
-        <div>
-          <label for="telefono">Telefono:</label>
-          <input
-            type="tel"
-            id="telefono"
-            required
-            size="11"
-            pattern="[0-9]{11}"
-            maxlength="11"
-          />
-        </div>
-        <!-- Inicio de radio -->
-        <fieldset>
-          <legend>Motivo de contacto</legend>
-
-          <div>
-            <input
-              type="radio"
-              id="ventas"
-              name="motivo"
-              value="ventas"
-              checked
-            />
-            <label for="ventas">Quiero comprar telas</label>
-          </div>
-
-          <div>
-            <input type="radio" id="otro" name="motivo" value="otro" />
-            <label for="otro">Otro</label>
-          </div>
-        </fieldset>
-        <!-- Fin de radio -->
-        <div>
-          <label for="asunto">Asunto</label>
-          <input type="text" id="asunto" />
-        </div>
-        <div>
-          <label for="consulta">Consulta</label>
-          <textarea
-            name="consulta"
-            id="consulta"
-            cols="30"
-            rows="10"
-            placeholder="Escribinos tu consulta..."
-            required
-          ></textarea>
-        </div>
-        <div>
-          <input type="checkbox" name="subscripcion" id="subscripcion" />
-          <label for="subscripcion">
-            Quiero subscribirme a novedades de telas
-          </label>
-        </div>
-        <!-- Aca va el captcha -->
-        <input type="submit" value="Hacenos tu consulta" />
-        
-      </form>
-    </main>
-    <footer>
-      <h4>Trabajo practico especial</h4>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/estilos/estilos.css" />
+  <title>Contacto</title>
+</head>
+<body>
+  <header>
+    <h1>El titulo de mi página</h1>
+    <nav class="navbar">
+      <ul>
+        <li><a href="/index.html">Inicio</a></li>
+        <li><a href="/catalogo.html">Catalogo</a></li>
+        <li><a href="/contacto.html">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <!-- Aca va a ir el contenido principal -->
+    <form action="">
       <div>
-        <span>Creado por:</span>
-        <ul>
-          <li>Martin Cappi</li>
-          <li>Mauro Pérez</li>
-        </ul>
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" required />
       </div>
-    </footer>
-  </body>
+      <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" required pattern=".+@.+\.com" size="30" />
+      </div>
+      <div>
+        <label for="telefono">Telefono:</label>
+        <input type="tel" id="telefono" required size="11" pattern="[0-9]{11}" maxlength="11" />
+      </div>
+      <!-- Inicio de radio -->
+      <fieldset>
+        <legend>Motivo de contacto</legend>
+
+        <div>
+          <input type="radio" id="ventas" name="motivo" value="ventas" checked />
+          <label for="ventas">Quiero comprar telas</label>
+        </div>
+
+        <div>
+          <input type="radio" id="otro" name="motivo" value="otro" />
+          <label for="otro">Otro</label>
+        </div>
+      </fieldset>
+      <!-- Fin de radio -->
+      <div>
+        <label for="asunto">Asunto</label>
+        <input type="text" id="asunto" />
+      </div>
+      <div>
+        <label for="consulta">Consulta</label>
+        <textarea name="consulta" id="consulta" cols="30" rows="10" placeholder="Escribinos tu consulta..."
+          required></textarea>
+      </div>
+      <div>
+        <input type="checkbox" name="subscripcion" id="subscripcion" />
+        <label for="subscripcion">
+          Quiero subscribirme a novedades de telas
+        </label>
+      </div>
+      <!-- Aca va el captcha -->
+      <div>
+        <label for="captcha">Mi super Captcha</label>
+        <input type="text" id="captcha" required />
+      </div>
+      <input type="submit" value="Hacenos tu consulta" />
+    </form>
+  </main>
+  <footer>
+    <h4>Trabajo practico especial</h4>
+    <div>
+      <span>Creado por:</span>
+      <ul>
+        <li>Martin Cappi</li>
+        <li>Mauro Pérez</li>
+      </ul>
+    </div>
+  </footer>
+</body>
 </html>
