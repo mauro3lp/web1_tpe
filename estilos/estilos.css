@@ -1,8 +1,18 @@
+:root {
+  --color-darkest:#1A0D03;
+  --color-dark: #876445;
+  --color-strong: #CA965C;
+  --color-highlight: #EEC373;
+  --color-light: #F4DFBA;
+  --color-lightest: #F6EDDD;
+}
 * {
   box-sizing: border-box;
   margin: 0;
 }
+
 body {
+  background: var(--color-lightest);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -10,10 +20,22 @@ body {
   align-items: center;
   padding: 0 10em;
 }
+main {
+  background-color: var(--color-light);
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  padding: 1em 5%;
+  width: 100%;
+  height: auto;
+  align-items: center;
+}
+
 
 /* #region Header */
 
 header {
+  background-color: var(--color-strong);
   padding: 2em 0 2em;
   display: flex;
   flex-direction: row;
@@ -41,7 +63,12 @@ header {
 /* #region Footer */
 
 footer {
+  background-color: var(--color-dark);
   padding: 2em 0 1em;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .autores {
   display: flex;
@@ -64,18 +91,32 @@ footer {
 
 /* #region Catalogo */
 
-.listaCatalogo {
-  padding: 2em 0;
+.catalogo {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
 }
 
 .producto {
+
   border: 2px solid black;
-  margin-bottom: 1em;
+
   padding: 0 0.3em;
 }
-.descripcionTela {
+.producto h4{
+  padding-left: 15%;
+}
+.detalleProducto{
   display: flex;
   flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 10vh;
+  min-width: 40vw;
+}
+.detalleProducto *{
+  width: 40%;
+  justify-self: center;
 }
 
 /* #endregion Catalogo */
