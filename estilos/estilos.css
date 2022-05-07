@@ -14,7 +14,7 @@ body {
 /* #region Header */
 
 header {
-  padding: 2em 0;
+  padding: 2em 0 2em;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -41,7 +41,7 @@ header {
 /* #region Footer */
 
 footer {
-  padding-bottom: 1em;
+  padding: 2em 0 1em;
 }
 .autores {
   display: flex;
