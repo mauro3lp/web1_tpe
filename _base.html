@@ -7,22 +7,40 @@
   <link rel="stylesheet" href="/estilos/estilos.css" />
   <title>Base</title>
 </head>
-<body>
+<body class="_base">
 
   <header>
     <h1>El titulo de mi página</h1>
 
     <nav class="navbar">
-      <ul>
-        <li><a href="/index.html">Inicio</a></li>
-        <li><a href="/catalogo.html">Catalogo</a></li>
-        <li><a href="/contacto.html">Contacto</a></li>
+      <ul class="navbarItems">
+        
+        <li>
+          <a href="/index.html">
+            <button class="navbarItems">
+              Inicio
+            </button>
+          </a>
+        </li>
+
+        <li>
+          <a href="/catalogo.html">
+            <button class="navbarItems">Catalogo</button>
+          </a>
+        </li>
+
+        <li>
+          <a href="/contacto.html">
+            <button class="navbarItems">Contacto</button>
+          </a>
+        </li>
+
       </ul>
     </nav>
 
   </header>
 
-  <main>
+  <main class="_base">
     <!-- Aca va a ir el contenido principal -->
 
   </main>
@@ -41,6 +59,6 @@
   </footer>
 
   <script src="./js/comportamiento.js"></script>
-  
+
 </body>
 </html>
