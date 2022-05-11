@@ -130,4 +130,12 @@ input:invalid {
   background-color: brown;
 }
 
+.campoCaptcha{
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+
+
+
 /* #endregion Contacto */

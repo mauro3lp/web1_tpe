@@ -25,21 +25,21 @@
   <main>
     <!-- Aca va a ir el contenido principal -->
 
-    <form action="">
+    <form>
 
       <div>
         <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" required />
+        <input type="text" id="nombre"  required />
       </div>
 
       <div>
         <label for="email">Email:</label>
-        <input type="email" id="email" required pattern=".+@.+\.com" size="30" />
+        <input type="email" id="email" required pattern=".+@.+\.com" />
       </div>
 
       <div>
         <label for="telefono">Telefono:</label>
-        <input type="tel" id="telefono" required size="11" pattern="[0-9]{11}" maxlength="11" />
+        <input type="tel" id="telefono" required pattern="[0-9]{11}" maxlength="11" />
       </div>
 
       <!-- Inicio de radio -->
@@ -77,15 +77,17 @@
       </div>
 
       <!-- Aca va el captcha -->
-      <div>
-        <div>
-          <h6>CAPTCHA</h6>
-          <label for="captcha">Cuanto es <span id="valorCaptcha1">#</span> + <span id="valorCaptcha2">#</span>?</label>
-        </div>
-        <input type="text" id="captcha" required />
-      </div>
+      <fieldset class="campoCaptcha">
+        <legend>CAPTCHA</legend>
 
-      <input type="submit" value="Hacenos tu consulta" disabled />
+        <div>
+          <label for="captcha">Cuanto es <span id="valorCaptcha1">#</span> + <span id="valorCaptcha2">#</span>?</label>
+          <input type="text" id="captcha" />
+        </div>
+
+      </fieldset>
+
+      <input type="submit" id="registrarse" value="Hacenos tu consulta" disabled />
 
     </form>
 
