@@ -98,15 +98,14 @@ footer {
 }
 
 .producto {
-
   border: 2px solid black;
 
   padding: 0 0.3em;
 }
-.producto h4{
+.producto h4 {
   padding-left: 15%;
 }
-.detalleProducto{
+.detalleProducto {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -114,11 +113,30 @@ footer {
   min-height: 10vh;
   min-width: 40vw;
 }
-.detalleProducto *{
+.detalleProducto * {
   width: 40%;
   justify-self: center;
 }
 
+.especificaciones {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+}
+.tituloEspecificaciones {
+  align-self: flex-start;
+}
+table {
+  width: 80%;
+}
+th,
+tr,
+td {
+  border: 1px solid black;
+  width: 20%;
+}
 /* #endregion Catalogo */
 
 /* #region Contacto */
@@ -130,12 +148,10 @@ input:invalid {
   background-color: brown;
 }
 
-.campoCaptcha{
+.campoCaptcha {
   display: flex;
   flex-direction: column;
   align-content: center;
 }
-
-
 
 /* #endregion Contacto */
