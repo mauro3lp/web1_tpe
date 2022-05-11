@@ -1,10 +1,10 @@
 :root {
-  --color-darkest:#1A0D03;
+  --color-darkest: #1a0d03;
   --color-dark: #876445;
-  --color-strong: #CA965C;
-  --color-highlight: #EEC373;
-  --color-light: #F4DFBA;
-  --color-lightest: #F6EDDD;
+  --color-strong: #ca965c;
+  --color-highlight: #eec373;
+  --color-light: #f4dfba;
+  --color-lightest: #f6eddd;
 }
 * {
   box-sizing: border-box;
@@ -30,7 +30,6 @@ main {
   height: auto;
   align-items: center;
 }
-
 
 /* #region Header */
 
@@ -98,15 +97,14 @@ footer {
 }
 
 .producto {
-
   border: 2px solid black;
 
   padding: 0 0.3em;
 }
-.producto h4{
+.producto h4 {
   padding-left: 15%;
 }
-.detalleProducto{
+.detalleProducto {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -114,20 +112,45 @@ footer {
   min-height: 10vh;
   min-width: 40vw;
 }
-.detalleProducto *{
+.detalleProducto * {
   width: 40%;
   justify-self: center;
 }
 
+.especificaciones {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+}
+.tituloEspecificaciones {
+  align-self: flex-start;
+}
+table {
+  width: 80%;
+}
+th,
+tr,
+td {
+  border: 1px solid black;
+  width: 20%;
+}
 /* #endregion Catalogo */
 
 /* #region Contacto */
 
-input:valid {
-  background-color: green;
+.campoCaptcha {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
 }
-input:invalid {
-  background-color: brown;
+.campoCaptcha input {
+  outline-color: crimson;
+}
+.campoCaptcha input.success {
+  outline-color: greenyellow;
+  border-color: green;
 }
 
 /* #endregion Contacto */

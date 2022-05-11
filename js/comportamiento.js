@@ -1,6 +1,8 @@
+'use strict';
 const inputCaptcha = document.querySelector('#captcha');
 const valorCaptcha1 = document.querySelector('#valorCaptcha1');
 const valorCaptcha2 = document.querySelector('#valorCaptcha2');
+const btnRegistrar = document.querySelector('#registrarse');
 
 function obtenerValorAleatorio(listaValores) {
   return listaValores[Math.floor(Math.random() * listaValores.length)];
@@ -15,18 +17,35 @@ function generarCaptcha() {
 function validarCaptcha() {
   const sumaCaptcha =
     parseInt(valorCaptcha1.innerHTML) + parseInt(valorCaptcha2.innerHTML);
-  console.log(sumaCaptcha);
   const resultadoCaptcha = parseInt(inputCaptcha.value);
 
-  console.log(resultadoCaptcha);
+  const validacion = sumaCaptcha === resultadoCaptcha;
+  const captchaTieneSuccess = inputCaptcha.classList.contains('success');
 
-  alert('muy bien sabes sumar!');
+  if (validacion && !captchaTieneSuccess) {
+    inputCaptcha.classList.add('success');
+  } else if (captchaTieneSuccess) {
+    inputCaptcha.classList.remove('success');
+  }
+
+  return validacion;
+}
+
+function toggleBotonRegistro(deshabilitado) {
+  btnRegistrar.disabled = deshabilitado;
 }
 
 if (inputCaptcha) {
-  console.log(inputCaptcha);
   generarCaptcha();
-  inputCaptcha.addEventListener('onchange', () => {
-    console.log('hola');
+
+  inputCaptcha.addEventListener('input', (e) => {
+    e.preventDefault();
+    const validacion = validarCaptcha();
+    toggleBotonRegistro(!validacion);
+  });
+
+  btnRegistrar.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.location.href = './catalogo.html';
   });
 }
