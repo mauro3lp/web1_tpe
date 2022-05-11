@@ -18,7 +18,17 @@ function validarCaptcha() {
   const sumaCaptcha =
     parseInt(valorCaptcha1.innerHTML) + parseInt(valorCaptcha2.innerHTML);
   const resultadoCaptcha = parseInt(inputCaptcha.value);
-  return sumaCaptcha === resultadoCaptcha;
+
+  const validacion = sumaCaptcha === resultadoCaptcha;
+  const captchaTieneSuccess = inputCaptcha.classList.contains('success');
+
+  if (validacion && !captchaTieneSuccess) {
+    inputCaptcha.classList.add('success');
+  } else if (captchaTieneSuccess) {
+    inputCaptcha.classList.remove('success');
+  }
+
+  return validacion;
 }
 
 function toggleBotonRegistro(deshabilitado) {

@@ -1,10 +1,10 @@
 :root {
-  --color-darkest:#1A0D03;
+  --color-darkest: #1a0d03;
   --color-dark: #876445;
-  --color-strong: #CA965C;
-  --color-highlight: #EEC373;
-  --color-light: #F4DFBA;
-  --color-lightest: #F6EDDD;
+  --color-strong: #ca965c;
+  --color-highlight: #eec373;
+  --color-light: #f4dfba;
+  --color-lightest: #f6eddd;
 }
 * {
   box-sizing: border-box;
@@ -30,7 +30,6 @@ main {
   height: auto;
   align-items: center;
 }
-
 
 /* #region Header */
 
@@ -141,17 +140,17 @@ td {
 
 /* #region Contacto */
 
-input:valid {
-  background-color: green;
-}
-input:invalid {
-  background-color: brown;
-}
-
 .campoCaptcha {
   display: flex;
   flex-direction: column;
   align-content: center;
+}
+.campoCaptcha input {
+  outline-color: crimson;
+}
+.campoCaptcha input.success {
+  outline-color: greenyellow;
+  border-color: green;
 }
 
 /* #endregion Contacto */
