@@ -57,7 +57,7 @@ header {
 .navbar li {
   height: fit-content;
   padding: 0.5em 1em;
-  border: solid 1px var(--color-light);
+  border: solid .0625em var(--color-light);
 }
 .navbar li:hover {
   border-color: var(--color-highlight);
@@ -103,6 +103,7 @@ footer {
 
 .detalleProducto h4 {
   padding-left: 15%;
+  padding-bottom: 5%;
 }
 .detalleProducto {
   display: flex;
@@ -120,6 +121,7 @@ footer {
 
 .detalleProducto li {
   width: 100%;
+  padding-bottom: 0.5em;
 }
 
 .especificaciones {
@@ -139,7 +141,7 @@ table {
 th,
 tr,
 td {
-  border: 1px solid black;
+  border: .0625em solid black;
   width: 20%;
   text-align: center;
   vertical-align: middle;
