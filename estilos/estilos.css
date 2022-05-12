@@ -1,4 +1,5 @@
 :root {
+  --color-black:#212121;
   --color-darkest: #1a0d03;
   --color-dark: #876445;
   --color-strong: #ca965c;
@@ -59,8 +60,9 @@ header {
   padding: 0.5em 1em;
   border: solid .0625em var(--color-light);
 }
-.navbar li:hover {
+.navbar li:hover, .activo {
   border-color: var(--color-highlight);
+  background-color: var(--color-light);
 }
 /* #endregion Header */
 
@@ -89,8 +91,17 @@ footer {
   justify-content: space-around;
   gap: 2em;
   height: 15em;
+  padding: 1em;
 }
-
+.introduccion p {
+  text-align: center;
+  align-self: center;
+}
+.introduccion div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
 /* #endregion Home */
 
 /* #region Catalogo */
@@ -154,7 +165,26 @@ td li {
 /* #endregion Catalogo */
 
 /* #region Contacto */
+form{
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
 
+}
+.formInput{
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 0.5em;
+  }
+.formTextarea{
+  display: flex;
+  flex-direction: column;
+
+}
+.obligatoria{
+  color: crimson;
+  font-size: 0.8em;
+}
 .campoCaptcha {
   display: flex;
   flex-direction: column;
@@ -167,5 +197,25 @@ td li {
   outline-color: greenyellow;
   border-color: green;
 }
+.btnEnviar{
+  margin-top: 1em;
+  background-color: var(--color-highlight);
+  border-color: var(--color-darkest);
+  color: var(--color-black);
+  padding: 0.7em 1.4em;
+  width: 90%;
+  align-self: center;
+  cursor: pointer;
+}
+.btnEnviar:hover{
+  background-color: var(--color-light);
+} 
+.btnEnviar:disabled{
+  background-color: var(--color-lightest);
+  border: none;
+  cursor: default;
+  filter: blur(0.07em);
+}
+
 
 /* #endregion Contacto */
