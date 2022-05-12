@@ -101,12 +101,7 @@ footer {
   gap: 1.5em;
 }
 
-.producto {
-  border: 2px solid black;
-
-  padding: 0 0.3em;
-}
-.producto h4 {
+.detalleProducto h4 {
   padding-left: 15%;
 }
 .detalleProducto {
@@ -118,9 +113,11 @@ footer {
   min-width: 40vw;
 }
 .detalleProducto > * {
-  width: 40%;
+  max-width: 40%;
   justify-self: center;
+  max-height: 40vh;
 }
+
 .detalleProducto li {
   width: 100%;
 }
