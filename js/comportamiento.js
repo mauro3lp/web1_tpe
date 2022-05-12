@@ -46,6 +46,6 @@ if (inputCaptcha) {
 
   btnRegistrar.addEventListener('click', (e) => {
     e.preventDefault();
-    window.location.href = './catalogo.html';
+    window.location.href = './contacto.html';
   });
 }
