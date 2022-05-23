@@ -10,6 +10,44 @@
       "ancho": 1.4,
       "precio": 750
     },
-    {}
+    {
+      "tela": "Friselina",
+      "composicion": [
+        { "ratio": 1, "tela": "Poliester" }
+      ],
+      "rinde": 0.53,
+      "ancho": 1.4,
+      "precio": 750
+    },
+    {
+      "tela": "Cuerina",
+      "composicion": [
+        { "ratio": 0.8, "tela": "PCV" },
+        { "ratio": 0.2, "tela": "Poliester" }
+      ],
+      "rinde": 0.53,
+      "ancho": 1.4,
+      "precio": 750
+    },
+  {
+    "tela": "Cuerina",
+      "composicion": [
+        { "ratio": 0.8, "tela": "PCV" },
+        { "ratio": 0.2, "tela": "Poliester" }
+      ],
+      "rinde": 0.53,
+      "ancho": 1.4,
+      "precio": 750
+  },
+  {
+    "tela": "Cuerina",
+      "composicion": [
+        { "ratio": 0.8, "tela": "PCV" },
+        { "ratio": 0.2, "tela": "Poliester" }
+      ],
+      "rinde": 0.53,
+      "ancho": 1.4,
+      "precio": 750
+  }
   ]
 }
