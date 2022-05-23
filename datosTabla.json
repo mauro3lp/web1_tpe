@@ -1,0 +1,15 @@
+{
+  "data": [
+    {
+      "tela": "Cuerina",
+      "composicion": [
+        { "ratio": 0.8, "tela": "PCV" },
+        { "ratio": 0.2, "tela": "Poliester" }
+      ],
+      "rinde": 0.53,
+      "ancho": 1.4,
+      "precio": 750
+    },
+    {}
+  ]
+}
