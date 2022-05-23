@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const valorCaptcha2 = document.querySelector('#valorCaptcha2');
   const btnRegistrar = document.querySelector('#registrarse');
   // Variables del Catalogo
-  const contenidoCatalogo = document.querySelector('#contenidoCatalogo');
+  const bodyCatalogo = document.querySelector('#contenidoCatalogo');
   //
 
   function obtenerValorAleatorio(listaValores) {
@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  if (contenidoCatalogo) {
+  if (bodyCatalogo) {
     traerDatosCatalogo();
     llenarCatalogo();
   }
