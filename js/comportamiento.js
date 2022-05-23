@@ -1,11 +1,13 @@
 'use strict';
 document.addEventListener('DOMContentLoaded', () => {
+  // Variables del captcha
   const inputCaptcha = document.querySelector('#captcha');
   const valorCaptcha1 = document.querySelector('#valorCaptcha1');
   const valorCaptcha2 = document.querySelector('#valorCaptcha2');
   const btnRegistrar = document.querySelector('#registrarse');
-
+  // Variables del Catalogo
   const contenidoCatalogo = document.querySelector('#contenidoCatalogo');
+  //
 
   function obtenerValorAleatorio(listaValores) {
     return listaValores[Math.floor(Math.random() * listaValores.length)];
@@ -42,7 +44,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const datosCatalogo = await fetch('./datosTabla.json').then((res) => {
       return res.json();
     });
+    console.log(datosCatalogo);
+
+    return datosCatalogo;
   }
+
+  function llenarFilaCatalogo(fila) {
+    console.log(fila);
+  }
+
+  function llenarCatalogo() {}
 
   if (inputCaptcha) {
     generarCaptcha();
@@ -58,7 +69,9 @@ document.addEventListener('DOMContentLoaded', () => {
       window.location.href = './contacto.html';
     });
   }
+
   if (contenidoCatalogo) {
     traerDatosCatalogo();
+    llenarCatalogo();
   }
 }); // NO TIENE QUE QUEDAR NADA POR FUERA DE ESTE CIERRE DEL CALLBACK DE DOMCONTENTLOADED
