@@ -3,8 +3,8 @@
     {
       "tela": "Cuerina",
       "composicion": [
-        { "ratio": 0.8, "tela": "PCV" },
-        { "ratio": 0.2, "tela": "Poliester" }
+        { "ratio": 0.8, "materiales": "PCV" },
+        { "ratio": 0.2, "materiales": "Poliester" }
       ],
       "rinde": 0.53,
       "ancho": 1.4,
@@ -13,41 +13,38 @@
     {
       "tela": "Friselina",
       "composicion": [
-        { "ratio": 1, "tela": "Poliester" }
+        { "ratio": 1, "materiales": "Poliester" }
       ],
       "rinde": 0.53,
       "ancho": 1.4,
       "precio": 750
     },
     {
-      "tela": "Cuerina",
+      "tela": "Friza",
       "composicion": [
-        { "ratio": 0.8, "tela": "PCV" },
-        { "ratio": 0.2, "tela": "Poliester" }
+          { "ratio": 1, "materiales": "Algodon" }
       ],
-      "rinde": 0.53,
-      "ancho": 1.4,
-      "precio": 750
+      "rinde": 0.525,
+      "ancho": 2.00,
+      "precio": 1700
     },
   {
-    "tela": "Cuerina",
+    "tela": "Lienzo",
       "composicion": [
-        { "ratio": 0.8, "tela": "PCV" },
-        { "ratio": 0.2, "tela": "Poliester" }
+        { "ratio": 1, "materiales": "Algodon" }
       ],
-      "rinde": 0.53,
-      "ancho": 1.4,
-      "precio": 750
+      "rinde": 0.52,
+      "ancho": 2.40,
+      "precio": 700
   },
   {
-    "tela": "Cuerina",
+    "tela": "Toalla",
       "composicion": [
-        { "ratio": 0.8, "tela": "PCV" },
-        { "ratio": 0.2, "tela": "Poliester" }
+        { "ratio": 1, "materiales": "Algodon" }
       ],
-      "rinde": 0.53,
-      "ancho": 1.4,
-      "precio": 750
+      "rinde": 0.54,
+      "ancho": 1.50,
+      "precio": 1800
   }
   ]
 }
