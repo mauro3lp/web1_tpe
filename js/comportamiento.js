@@ -5,6 +5,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const valorCaptcha2 = document.querySelector('#valorCaptcha2');
   const btnRegistrar = document.querySelector('#registrarse');
 
+  const contenidoCatalogo = document.querySelector('#contenidoCatalogo');
+
   function obtenerValorAleatorio(listaValores) {
     return listaValores[Math.floor(Math.random() * listaValores.length)];
   }
@@ -36,6 +38,12 @@ document.addEventListener('DOMContentLoaded', () => {
     btnRegistrar.disabled = deshabilitado;
   }
 
+  async function traerDatosCatalogo() {
+    const datosCatalogo = await fetch('./datosTabla.json').then((res) => {
+      return res.json();
+    });
+  }
+
   if (inputCaptcha) {
     generarCaptcha();
 
@@ -49,5 +57,8 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       window.location.href = './contacto.html';
     });
+  }
+  if (contenidoCatalogo) {
+    traerDatosCatalogo();
   }
 }); // NO TIENE QUE QUEDAR NADA POR FUERA DE ESTE CIERRE DEL CALLBACK DE DOMCONTENTLOADED
