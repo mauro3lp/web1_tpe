@@ -9,6 +9,17 @@ document.addEventListener('DOMContentLoaded', () => {
   const bodyCatalogo = document.querySelector('#contenidoCatalogo');
   //
 
+  function menuMobile() {
+    const hamburguesa = document.querySelector('.hamburguesa');
+    const navbar = document.querySelector('.navbar');
+
+    hamburguesa.addEventListener('click', () => {
+      navbar.classList.toggle('navbarActivo');
+      hamburguesa.classList.toggle('hamburguesaActiva');
+    });
+  }
+  menuMobile();
+
   function obtenerValorAleatorio(listaValores) {
     return listaValores[Math.floor(Math.random() * listaValores.length)];
   }

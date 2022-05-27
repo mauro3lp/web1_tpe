@@ -1,5 +1,5 @@
 :root {
-  --color-black:#212121;
+  --color-black: #212121;
   --color-darkest: #1a0d03;
   --color-dark: #876445;
   --color-strong: #ca965c;
@@ -20,7 +20,6 @@ body {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding: 0 10em;
 }
 main {
   background-color: var(--color-light);
@@ -39,28 +38,58 @@ header {
   background-color: var(--color-strong);
   padding: 2em 0 2em;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-around;
+  gap: 1em;
   width: 100%;
+  align-items: center;
   align-content: center;
 }
-.navbar {
+.mobil{
   display: flex;
-  align-content: center;
+  flex-direction: row;
+  align-items: center;
+  gap: 1em;
+}
+.hamburguesa div{
+  width: 25px;
+  height: 3px;
+  background-color: var(--color-darkest);
+  margin: 5px 0;
+  transition: all 0.5s ease-in;
+}
+.hamburguesaActiva .hambLinea1{
+  transform: rotate(45deg) translate(5px, 6px);
+}
+.hamburguesaActiva .hambLinea2{
+  opacity: 0;
+}
+.hamburguesaActiva .hambLinea3{
+  transform: rotate(-45deg) translate(5px, -6px);
+}
+
+.navbar {
+  display: none;
+}
+.navbarActivo{
+  display: flex;
+  
 }
 .navbar ul {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;;
   gap: 2em;
   list-style: none;
   height: fit-content;
+  padding: 0;
 }
 .navbar li {
   height: fit-content;
   padding: 0.5em 1em;
-  border: solid .0625em var(--color-light);
+  border: solid 0.0625em var(--color-light);
 }
-.navbar li:hover, .activo {
+.navbar li:hover,
+.activo {
   border-color: var(--color-highlight);
   background-color: var(--color-light);
 }
@@ -152,7 +181,7 @@ table {
 th,
 tr,
 td {
-  border: .0625em solid black;
+  border: 0.0625em solid black;
   width: 20%;
   text-align: center;
   vertical-align: middle;
@@ -165,23 +194,21 @@ td li {
 /* #endregion Catalogo */
 
 /* #region Contacto */
-form{
+form {
   display: flex;
   flex-direction: column;
   gap: 0.5em;
-
 }
-.formInput{
+.formInput {
   display: grid;
   grid-template-columns: 1fr 2fr;
   gap: 0.5em;
-  }
-.formTextarea{
+}
+.formTextarea {
   display: flex;
   flex-direction: column;
-
 }
-.obligatoria{
+.obligatoria {
   color: crimson;
   font-size: 0.8em;
 }
@@ -197,7 +224,7 @@ form{
   outline-color: greenyellow;
   border-color: green;
 }
-.btnEnviar{
+.btnEnviar {
   margin-top: 1em;
   background-color: var(--color-highlight);
   border-color: var(--color-darkest);
@@ -207,15 +234,52 @@ form{
   align-self: center;
   cursor: pointer;
 }
-.btnEnviar:hover{
+.btnEnviar:hover {
   background-color: var(--color-light);
-} 
-.btnEnviar:disabled{
+}
+.btnEnviar:disabled {
   background-color: var(--color-lightest);
   border: none;
   cursor: default;
   filter: blur(0.07em);
 }
 
-
 /* #endregion Contacto */
+
+@media only screen and (min-width: 420px) {
+  body{
+    background-color: crimson;
+    padding: 0 10%;
+  }
+  /* #region Header */
+  header{
+    flex-direction: row;
+  }
+  .hamburguesa{
+    display: none;
+  }
+  .navbar {
+    display: flex;
+    align-content: center;
+  }
+  .navbar ul{
+    flex-direction: row;
+  }
+  /* #endregion Header */
+
+  /* #region Footer */
+
+  /* #endregion Footer */
+
+  /* #region Home */
+
+  /* #endregion Home */
+
+  /* #region Catalogo */
+
+  /* #endregion Catalogo */
+
+  /* #region Contacto */
+
+  /* #endregion Contacto */
+}
