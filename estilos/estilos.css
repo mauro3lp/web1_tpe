@@ -114,23 +114,8 @@ footer {
 
 /* #region Home */
 
-.introduccion {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  gap: 2em;
-  height: 15em;
-  padding: 1em;
-}
-.introduccion p {
-  text-align: center;
-  align-self: center;
-}
-.introduccion div {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-}
+
+
 /* #endregion Home */
 
 /* #region Catalogo */
@@ -273,6 +258,23 @@ form {
 
   /* #region Home */
 
+  .introduccion {
+    display: flex;
+    flex-direction: row;
+    gap: 2em;
+    height: 15em;
+    padding: 1em;
+  }
+  .introduccion p {
+    text-align: center;
+    align-self: center;
+  }
+
+  .introduccion div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
   /* #endregion Home */
 
   /* #region Catalogo */
