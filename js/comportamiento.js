@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   async function traerDatosCatalogo() {
-    const datosCatalogo = await fetch('./datosTabla.json').then((res) => {
+    const datosCatalogo = await fetch('datosTabla.json').then((res) => {
       return res.json();
     });
     console.log(datosCatalogo);
@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     btnRegistrar.addEventListener('click', (e) => {
       e.preventDefault();
-      window.location.href = './contacto.html';
+      window.location.href = 'contacto.html';
     });
   }
 
