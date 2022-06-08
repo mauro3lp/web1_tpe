@@ -51,57 +51,57 @@ document.addEventListener('DOMContentLoaded', () => {
     btnRegistrar.disabled = deshabilitado;
   }
 
-  async function traerDatosCatalogo() {
+  async function precargarCatalogo() {
     const datosCatalogo = await fetch('./datosTabla.json').then((res) => {
       return res.json();
     });
-    console.log(datosCatalogo);
 
-    return datosCatalogo;
+    llenarCatalogo(datosCatalogo);
   }
 
   function agregarFilaCatalogo(dato) {
-    console.log(dato);
-    const fila = document.createElement("tr")
-    const tela = document.createElement("td")
-    const composicion = document.createElement("td")
-    const rinde = document.createElement("td")
-    const ancho = document.createElement("td")
-    const precio = document.createElement("td")
-    tela.innerText = dato.tela
-    rinde.innerText = dato.rinde
-    ancho.innerText = dato.ancho
-    precio.innerText = dato.precio 
-    composicion.appendChild (crearLista (dato.composicion))
-    fila.appendChild (tela)  
-    fila.appendChild (composicion)  
-    fila.appendChild (rinde) 
-    fila.appendChild (ancho)
-    fila.appendChild (precio) 
-    bodyCatalogo.appendChild (fila)
+    const fila = document.createElement('tr');
     
+    const tela = document.createElement('td');
+    const composicion = document.createElement('td');
+    const rinde = document.createElement('td');
+    const ancho = document.createElement('td');
+    const precio = document.createElement('td');
+
+    tela.innerText = dato.tela;
+    composicion.appendChild(crearLista(dato.composicion));
+    rinde.innerText = dato.rinde;
+    ancho.innerText = dato.ancho;
+    precio.innerText = dato.precio;
+
+    fila.appendChild(tela);
+    fila.appendChild(composicion);
+    fila.appendChild(rinde);
+    fila.appendChild(ancho);
+    fila.appendChild(precio);
+
+    bodyCatalogo.appendChild(fila);
   }
 
-function crearLista(arr) {
-const lista = document.createElement("ul")
-if (arr.length && arr.length> 0) {
-arr.forEach(elemento => { 
-const elementoLista = document.createElement ("li") 
-elementoLista.innerText = elemento.ratio*100 + "% "+elemento.materiales 
+  function crearLista(arr) {
+    const lista = document.createElement('ul');
 
-});
+    if (arr.length && arr.length > 0) {
+      arr.forEach((elemento) => {
+        const elementoLista = document.createElement('li');
+        elementoLista.innerText =
+          elemento.ratio * 100 + '% ' + elemento.materiales;
+        lista.appendChild(elementoLista);
+      });
 
-return lista
-
-} 
-
-}
+      return lista;
+    }
+  }
 
   function llenarCatalogo(datos) {
-    if (datos.length && (datos.length > 0) )
-    {
-      datos.forEach(dato => {
-        agregarFilaCatalogo(dato) 
+    if (datos.length && datos.length > 0) {
+      datos.forEach((dato) => {
+        agregarFilaCatalogo(dato);
       });
     }
   }
@@ -122,7 +122,6 @@ return lista
   }
 
   if (bodyCatalogo) {
-    const datosCatalogo = traerDatosCatalogo();
-    llenarCatalogo(datosCatalogo);
+    precargarCatalogo();
   }
 }); // NO TIENE QUE QUEDAR NADA POR FUERA DE ESTE CIERRE DEL CALLBACK DE DOMCONTENTLOADED
