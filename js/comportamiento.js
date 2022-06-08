@@ -60,11 +60,51 @@ document.addEventListener('DOMContentLoaded', () => {
     return datosCatalogo;
   }
 
-  function llenarFilaCatalogo(fila) {
-    console.log(fila);
+  function agregarFilaCatalogo(dato) {
+    console.log(dato);
+    const fila = document.createElement("tr")
+    const tela = document.createElement("td")
+    const composicion = document.createElement("td")
+    const rinde = document.createElement("td")
+    const ancho = document.createElement("td")
+    const precio = document.createElement("td")
+    tela.innerText = dato.tela
+    rinde.innerText = dato.rinde
+    ancho.innerText = dato.ancho
+    precio.innerText = dato.precio 
+    composicion.appendChild (crearLista (dato.composicion))
+    fila.appendChild (tela)  
+    fila.appendChild (composicion)  
+    fila.appendChild (rinde) 
+    fila.appendChild (ancho)
+    fila.appendChild (precio) 
+    bodyCatalogo.appendChild (fila)
+    
   }
 
-  function llenarCatalogo() {}
+function crearLista(arr) {
+const lista = document.createElement("ul")
+if (arr.length && arr.length> 0) {
+arr.forEach(elemento => { 
+const elementoLista = document.createElement ("li") 
+elementoLista.innerText = elemento.ratio*100 + "% "+elemento.materiales 
+
+});
+
+return lista
+
+} 
+
+}
+
+  function llenarCatalogo(datos) {
+    if (datos.length && (datos.length > 0) )
+    {
+      datos.forEach(dato => {
+        agregarFilaCatalogo(dato) 
+      });
+    }
+  }
 
   if (inputCaptcha) {
     generarCaptcha();
@@ -82,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   if (bodyCatalogo) {
-    traerDatosCatalogo();
-    llenarCatalogo();
+    const datosCatalogo = traerDatosCatalogo();
+    llenarCatalogo(datosCatalogo);
   }
 }); // NO TIENE QUE QUEDAR NADA POR FUERA DE ESTE CIERRE DEL CALLBACK DE DOMCONTENTLOADED
