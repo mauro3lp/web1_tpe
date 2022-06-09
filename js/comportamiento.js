@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const datosCatalogo = [];
   const btnAgregarCatalogo = document.querySelector('#agregarCatalogo');
   const btnTripleCatalogo = document.querySelector('#tripleCatalogo');
+  const btnVaciarCatalogo = document.querySelector('#vaciarCatalogo');
   //
 
   function menuMobile() {
@@ -184,17 +185,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (bodyCatalogo) {
     cargarCatalogo();
+
     btnAgregarCatalogo.addEventListener('click', (e) => {
       e.preventDefault();
       nuevoItemCatalogo();
       resetearFormCatalogo();
     });
+
     btnTripleCatalogo.addEventListener('click', (e) => {
       e.preventDefault();
       nuevoItemCatalogo();
       nuevoItemCatalogo();
       nuevoItemCatalogo();
       resetearFormCatalogo();
+    });
+
+    btnVaciarCatalogo.addEventListener('click', () => {
+      datosCatalogo.length = 0;
+      bodyCatalogo.innerHTML = null;
     });
   }
 }); // NO TIENE QUE QUEDAR NADA POR FUERA DE ESTE CIERRE DEL CALLBACK DE DOMCONTENTLOADED
