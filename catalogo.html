@@ -33,7 +33,7 @@
     <!-- Aca va a ir el contenido principal -->
 
     <article class="catalogo">
-      <h1>Catalogo</h1>
+      <h1 class="centrar">Catalogo</h1>
 
       <section class="detalleProducto">
         <div>
@@ -57,8 +57,6 @@
       </section>
 
       <section class="detalleProducto">
-        <img src="./imagenes/friselina.jpg" alt="Tela de friselina" />
-
         <div>
           <h4>Friselina</h4>
 
@@ -74,6 +72,7 @@
           </ul>
         </div>
 
+        <img src="./imagenes/friselina.jpg" alt="Tela de friselina" />
       </section>
 
       <section class="detalleProducto">
@@ -96,8 +95,6 @@
       </section>
 
       <section class="detalleProducto">
-        <img src="./imagenes/lienzo.jpg" alt="Tela de lienzo" />
-
         <div>
           <h4>Lienzo</h4>
 
@@ -115,6 +112,8 @@
             </li>
           </ul>
         </div>
+
+        <img src="./imagenes/lienzo.jpg" alt="Tela de lienzo" />
       </section>
 
       <section class="detalleProducto">
@@ -168,7 +167,7 @@
 
         </tbody>
       </table>
-      <button id="vaciarCatalogo">Vaciar catalogo</button>
+      <button type="reset" class="btn btnVaciar" id="vaciarCatalogo">Vaciar catalogo</button>
 
       <form id="formCatalogo">
         <div class="formInput">
@@ -192,8 +191,8 @@
           <input type="text" id="precio" value="14">
         </div>
         <div class="flexColRow">
-          <input class="btnEnviar" type="button" value="Agregar" id="agregarCatalogo">
-          <input class="btnEnviar" type="button" value="x3" id="tripleCatalogo">
+          <input class="btn btnEnviar" type="button" value="Agregar" id="agregarCatalogo">
+          <input class="btn btnEnviar" type="button" value="x3" id="tripleCatalogo">
         </div>
       </form>
 

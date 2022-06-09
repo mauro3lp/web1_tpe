@@ -8,6 +8,7 @@
   --color-lightest: #f6eddd;
   --color-rojelio: #c5abcd;
 }
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -21,6 +22,7 @@ body {
   justify-content: space-between;
   align-items: center;
 }
+
 main {
   background-color: var(--color-light);
   display: flex;
@@ -45,54 +47,63 @@ header {
   align-items: center;
   align-content: center;
 }
-.mobil{
+
+.mobil {
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 1em;
 }
-.hamburguesa div{
+
+.hamburguesa div {
   width: 25px;
   height: 3px;
   background-color: var(--color-darkest);
   margin: 5px 0;
   transition: all 0.5s ease-in;
 }
-.hamburguesaActiva .hambLinea1{
+
+.hamburguesaActiva .hambLinea1 {
   transform: rotate(45deg) translate(5px, 6px);
 }
-.hamburguesaActiva .hambLinea2{
+
+.hamburguesaActiva .hambLinea2 {
   opacity: 0;
 }
-.hamburguesaActiva .hambLinea3{
+
+.hamburguesaActiva .hambLinea3 {
   transform: rotate(-45deg) translate(5px, -6px);
 }
 
 .navbar {
   display: none;
 }
-.navbarActivo{
+
+.navbarActivo {
   display: flex;
-  
 }
+
 .navbar ul {
   display: flex;
-  flex-direction: column;;
+  flex-direction: column;
   gap: 2em;
   list-style: none;
   height: fit-content;
   padding: 0;
 }
+
 .navbar li {
   height: fit-content;
   padding: 0.5em 1em;
   border: solid 0.0625em var(--color-light);
 }
+
 .navbar li:hover,
 .activo {
   border-color: var(--color-highlight);
   background-color: var(--color-light);
 }
+
 /* #endregion Header */
 
 /* #region Footer */
@@ -114,7 +125,24 @@ footer {
 
 /* #region Home */
 
+.introduccion {
+  display: flex;
+  flex-direction: column;
+  max-width: 95vw;
+  gap: 2em;
+  padding: 1em;
+}
 
+.centrar {
+  text-align: center;
+  align-self: center;
+}
+
+.introduccion div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
 
 /* #endregion Home */
 
@@ -130,18 +158,26 @@ footer {
   padding-left: 15%;
   padding-bottom: 5%;
 }
+
 .detalleProducto {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-around;
   align-items: center;
   min-height: 10vh;
   min-width: 40vw;
 }
+
 .detalleProducto > * {
-  max-width: 40%;
   justify-self: center;
-  max-height: 40vh;
+}
+
+.detalleProducto div {
+  max-width: 95%;
+}
+
+.detalleProducto img {
+  max-height: 25vh;
 }
 
 .detalleProducto li {
@@ -156,13 +192,16 @@ footer {
   align-items: center;
   gap: 1em;
 }
+
 .tituloEspecificaciones {
   align-self: flex-start;
 }
+
 table {
   width: 80%;
   border-collapse: collapse;
 }
+
 th,
 tr,
 td {
@@ -177,7 +216,12 @@ td li {
   text-align: start;
 }
 
-.flexColRow{
+.oferta {
+  background-color: var(--color-highlight);
+  font-weight: bold;
+}
+
+.flexColRow {
   display: flex;
   flex-direction: column;
   gap: 2%;
@@ -185,49 +229,67 @@ td li {
 /* #endregion Catalogo */
 
 /* #region Contacto */
+
 form {
   display: flex;
   flex-direction: column;
   gap: 0.5em;
 }
+
 .formInput {
   display: grid;
-  grid-template-columns: 1fr 2fr;
+
   gap: 0.5em;
 }
+
 .formTextarea {
   display: flex;
   flex-direction: column;
 }
+
 .obligatoria {
   color: crimson;
   font-size: 0.8em;
 }
+
 .campoCaptcha {
   display: flex;
   flex-direction: column;
   align-content: center;
 }
+
 .campoCaptcha input {
   outline-color: crimson;
 }
+
 .campoCaptcha input.success {
   outline-color: greenyellow;
   border-color: green;
 }
-.btnEnviar {
+
+.btn {
   margin-top: 1em;
   background-color: var(--color-highlight);
   border-color: var(--color-darkest);
   color: var(--color-black);
   padding: 0.7em 1.4em;
-  width: 90%;
   align-self: center;
   cursor: pointer;
 }
+
+.btnEnviar {
+  width: 90%;
+}
+
+.btnVaciar {
+  background-color: var(--color-strong);
+  border-color: crimson;
+}
+
 .btnEnviar:hover {
   background-color: var(--color-light);
 }
+
 .btnEnviar:disabled {
   background-color: var(--color-lightest);
   border: none;
@@ -238,24 +300,30 @@ form {
 /* #endregion Contacto */
 
 @media only screen and (min-width: 420px) {
-  body{
+  body {
     background-color: crimson;
     padding: 0 10%;
   }
+
   /* #region Header */
-  header{
+
+  header {
     flex-direction: row;
   }
-  .hamburguesa{
+
+  .hamburguesa {
     display: none;
   }
+
   .navbar {
     display: flex;
     align-content: center;
   }
-  .navbar ul{
+
+  .navbar ul {
     flex-direction: row;
   }
+
   /* #endregion Header */
 
   /* #region Footer */
@@ -265,33 +333,48 @@ form {
   /* #region Home */
 
   .introduccion {
-    display: flex;
+    max-width: 95%;
     flex-direction: row;
-    gap: 2em;
-    height: 15em;
-    padding: 1em;
-  }
-  .introduccion p {
-    text-align: center;
-    align-self: center;
   }
 
-  .introduccion div {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+  .introduccion:nth-of-type(even) {
+    flex-direction: row-reverse;
   }
+
+  .introduccion > * {
+    max-width: 50%;
+  }
+
   /* #endregion Home */
 
   /* #region Catalogo */
 
-  .flexColRow{
+  .detalleProducto {
+    flex-direction: row;
+  }
+
+  .detalleProducto:nth-of-type(even) {
+    flex-direction: row-reverse;
+  }
+
+  .detalleProducto > img,
+  .detalleProducto > div {
+    max-width: 40%;
+    justify-self: center;
+    max-height: 40vh;
+  }
+
+  .flexColRow {
     flex-direction: row;
   }
 
   /* #endregion Catalogo */
 
   /* #region Contacto */
+
+  .formInput {
+    grid-template-columns: 1fr 2fr;
+  }
 
   /* #endregion Contacto */
 }
