@@ -7,6 +7,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const btnRegistrar = document.querySelector('#registrarse');
   // Variables del Catalogo
   const bodyCatalogo = document.querySelector('#contenidoCatalogo');
+  const datosCatalogo = [];
+  const btnAgregarCatalogo = document.querySelector('#agregarCatalogo');
+  const btnTripleCatalogo = document.querySelector('#tripleCatalogo');
   //
 
   function menuMobile() {
@@ -51,17 +54,40 @@ document.addEventListener('DOMContentLoaded', () => {
     btnRegistrar.disabled = deshabilitado;
   }
 
-  async function precargarCatalogo() {
-    const datosCatalogo = await fetch('./datosTabla.json').then((res) => {
-      return res.json();
-    });
-
+  async function cargarCatalogo() {
+    await precargarCatalogo();
     llenarCatalogo(datosCatalogo);
   }
 
-  function agregarFilaCatalogo(dato) {
+  async function precargarCatalogo() {
+    return await fetch('./datosTabla.json')
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        pegarCatalogo(data);
+      });
+  }
+
+  function pegarCatalogo(arr) {
+    if (Array.isArray(arr) && arr.length > 0) {
+      arr.forEach((elemento) => {
+        datosCatalogo.push(elemento);
+      });
+    }
+  }
+
+  function llenarCatalogo(datos) {
+    if (Array.isArray(datos) && datos.length > 0) {
+      datos.forEach((dato) => {
+        agregarFilaCatalogo(dato, crearListaApi);
+      });
+    }
+  }
+
+  function agregarFilaCatalogo(dato, callbackCrearLista) {
     const fila = document.createElement('tr');
-    
+
     const tela = document.createElement('td');
     const composicion = document.createElement('td');
     const rinde = document.createElement('td');
@@ -69,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const precio = document.createElement('td');
 
     tela.innerText = dato.tela;
-    composicion.appendChild(crearLista(dato.composicion));
+    composicion.appendChild(callbackCrearLista(dato.composicion));
     rinde.innerText = dato.rinde;
     ancho.innerText = dato.ancho;
     precio.innerText = dato.precio;
@@ -83,10 +109,10 @@ document.addEventListener('DOMContentLoaded', () => {
     bodyCatalogo.appendChild(fila);
   }
 
-  function crearLista(arr) {
+  function crearListaApi(arr) {
     const lista = document.createElement('ul');
 
-    if (arr.length && arr.length > 0) {
+    if (Array.isArray(arr) && arr.length > 0) {
       arr.forEach((elemento) => {
         const elementoLista = document.createElement('li');
         elementoLista.innerText =
@@ -98,12 +124,47 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  function llenarCatalogo(datos) {
-    if (datos.length && datos.length > 0) {
-      datos.forEach((dato) => {
-        agregarFilaCatalogo(dato);
+  function crearListaInput(arr) {
+    const lista = document.createElement('ul');
+
+    if (Array.isArray(arr) && arr.length > 0) {
+      arr.forEach((elemento) => {
+        const elementoLista = document.createElement('li');
+        elementoLista.innerText = elemento;
+        lista.appendChild(elementoLista);
       });
+
+      return lista;
     }
+  }
+
+  function nuevoItemCatalogo() {
+    const nuevoItem = {
+      tela: '',
+      composicion: [],
+      rinde: 0,
+      ancho: 0,
+      precio: 0,
+    };
+    const inputTela = document.querySelector('#tela');
+    const inputComposicion = document.querySelector('#composicion');
+    const inputRinde = document.querySelector('#rinde');
+    const inputAncho = document.querySelector('#ancho');
+    const inputPrecio = document.querySelector('#precio');
+
+    nuevoItem.tela = inputTela.value;
+    nuevoItem.composicion = inputComposicion.value.split(',');
+    nuevoItem.rinde = parseFloat(inputRinde.value);
+    nuevoItem.ancho = parseFloat(inputAncho.value);
+    nuevoItem.precio = parseFloat(inputPrecio.value);
+
+    datosCatalogo.push(nuevoItem);
+    agregarFilaCatalogo(nuevoItem, crearListaInput);
+  }
+
+  function resetearFormCatalogo() {
+    const form = document.querySelector('#formCatalogo');
+    form.reset();
   }
 
   if (inputCaptcha) {
@@ -122,6 +183,18 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   if (bodyCatalogo) {
-    precargarCatalogo();
+    cargarCatalogo();
+    btnAgregarCatalogo.addEventListener('click', (e) => {
+      e.preventDefault();
+      nuevoItemCatalogo();
+      resetearFormCatalogo();
+    });
+    btnTripleCatalogo.addEventListener('click', (e) => {
+      e.preventDefault();
+      nuevoItemCatalogo();
+      nuevoItemCatalogo();
+      nuevoItemCatalogo();
+      resetearFormCatalogo();
+    });
   }
 }); // NO TIENE QUE QUEDAR NADA POR FUERA DE ESTE CIERRE DEL CALLBACK DE DOMCONTENTLOADED

@@ -168,27 +168,31 @@
 
         </tbody>
       </table>
-      
-      <form>
-        <div>
-          <label for=""></label>
-          <input type="text">
+
+      <form id="formCatalogo">
+        <div class="formInput">
+          <label for="tela">Tela</label>
+          <input type="text" id="tela" value="debug">
         </div>
-        <div>
-          <label for=""></label>
-          <input type="text">
+        <div class="formInput">
+          <label for="composicion">Composicion</label>
+          <input type="text" id="composicion" value="20% A, 30%B">
         </div>
-        <div>
-          <label for=""></label>
-          <input type="text">
+        <div class="formInput">
+          <label for="rinde">Rinde</label>
+          <input type="text" id="rinde" value="12">
         </div>
-        <div>
-          <label for=""></label>
-          <input type="text">
+        <div class="formInput">
+          <label for="ancho">Ancho</label>
+          <input type="text" id="ancho" value="13">
         </div>
-        <div>
-          <label for=""></label>
-          <input type="text">
+        <div class="formInput">
+          <label for="precio">Precio</label>
+          <input type="text" id="precio" value="14">
+        </div>
+        <div class="flexColRow">
+          <input class="btnEnviar" type="button" value="Agregar" id="agregarCatalogo">
+          <input class="btnEnviar" type="button" value="x3" id="tripleCatalogo">
         </div>
       </form>
 

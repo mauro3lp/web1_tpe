@@ -176,6 +176,12 @@ td {
 td li {
   text-align: start;
 }
+
+.flexColRow{
+  display: flex;
+  flex-direction: column;
+  gap: 2%;
+}
 /* #endregion Catalogo */
 
 /* #region Contacto */
@@ -278,6 +284,10 @@ form {
   /* #endregion Home */
 
   /* #region Catalogo */
+
+  .flexColRow{
+    flex-direction: row;
+  }
 
   /* #endregion Catalogo */
 
