@@ -107,6 +107,11 @@ document.addEventListener('DOMContentLoaded', () => {
     fila.appendChild(ancho);
     fila.appendChild(precio);
 
+    const precioOferta = 1000;
+    if (dato.precio < precioOferta) {
+      fila.classList.add('oferta');
+    }
+
     bodyCatalogo.appendChild(fila);
   }
 
@@ -139,7 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  function nuevoItemCatalogo() {
+  function nuevoItemCatalogo(copias = 1) {
     const nuevoItem = {
       tela: '',
       composicion: [],
@@ -159,8 +164,12 @@ document.addEventListener('DOMContentLoaded', () => {
     nuevoItem.ancho = parseFloat(inputAncho.value);
     nuevoItem.precio = parseFloat(inputPrecio.value);
 
-    datosCatalogo.push(nuevoItem);
-    agregarFilaCatalogo(nuevoItem, crearListaInput);
+    while (copias > 0) {
+      datosCatalogo.push(nuevoItem);
+      agregarFilaCatalogo(nuevoItem, crearListaInput);
+      copias--;
+    }
+    resetearFormCatalogo();
   }
 
   function resetearFormCatalogo() {
@@ -189,15 +198,11 @@ document.addEventListener('DOMContentLoaded', () => {
     btnAgregarCatalogo.addEventListener('click', (e) => {
       e.preventDefault();
       nuevoItemCatalogo();
-      resetearFormCatalogo();
     });
 
     btnTripleCatalogo.addEventListener('click', (e) => {
       e.preventDefault();
-      nuevoItemCatalogo();
-      nuevoItemCatalogo();
-      nuevoItemCatalogo();
-      resetearFormCatalogo();
+      nuevoItemCatalogo(3);
     });
 
     btnVaciarCatalogo.addEventListener('click', () => {
