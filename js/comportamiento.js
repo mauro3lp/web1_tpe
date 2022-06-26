@@ -81,12 +81,12 @@ document.addEventListener('DOMContentLoaded', () => {
   function llenarCatalogo(datos) {
     if (Array.isArray(datos) && datos.length > 0) {
       datos.forEach((dato) => {
-        agregarFilaCatalogo(dato, crearListaApi);
+        agregarFilaCatalogo(dato);
       });
     }
   }
 
-  function agregarFilaCatalogo(dato, callbackCrearLista) {
+  function agregarFilaCatalogo(dato) {
     const fila = document.createElement('tr');
 
     const tela = document.createElement('td');
@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const precio = document.createElement('td');
 
     tela.innerText = dato.tela;
-    composicion.appendChild(callbackCrearLista(dato.composicion));
+    composicion.appendChild(crearListaInput(dato.composicion));
     rinde.innerText = dato.rinde;
     ancho.innerText = dato.ancho;
     precio.innerText = dato.precio;
@@ -115,28 +115,13 @@ document.addEventListener('DOMContentLoaded', () => {
     bodyCatalogo.appendChild(fila);
   }
 
-  function crearListaApi(arr) {
-    const lista = document.createElement('ul');
-
-    if (Array.isArray(arr) && arr.length > 0) {
-      arr.forEach((elemento) => {
-        const elementoLista = document.createElement('li');
-        elementoLista.innerText =
-          elemento.ratio * 100 + '% ' + elemento.materiales;
-        lista.appendChild(elementoLista);
-      });
-
-      return lista;
-    }
-  }
-
   function crearListaInput(arr) {
     const lista = document.createElement('ul');
 
     if (Array.isArray(arr) && arr.length > 0) {
       arr.forEach((elemento) => {
         const elementoLista = document.createElement('li');
-        elementoLista.innerText = elemento;
+        elementoLista.innerText = elemento.trim();
         lista.appendChild(elementoLista);
       });
 
@@ -166,7 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     while (copias > 0) {
       datosCatalogo.push(nuevoItem);
-      agregarFilaCatalogo(nuevoItem, crearListaInput);
+      agregarFilaCatalogo(nuevoItem);
       copias--;
     }
     resetearFormCatalogo();
