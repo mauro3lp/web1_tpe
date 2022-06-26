@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   async function precargarCatalogo() {
-    return await fetch('./datosTabla.json')
+    return await fetch('https://62b8d817ff109cd1dc88b9f0.mockapi.io/telas')
       .then((res) => {
         return res.json();
       })

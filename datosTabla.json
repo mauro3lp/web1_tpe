@@ -1,5 +1,6 @@
 [
   {
+    "id": "1",
     "tela": "Cuerina",
     "composicion": ["80% PCV", "20% Poliester"],
     "rinde": 0.53,
@@ -7,6 +8,7 @@
     "precio": 750
   },
   {
+    "id": "2",
     "tela": "Friselina",
     "composicion": ["100% Poliester"],
     "rinde": 0.53,
@@ -14,6 +16,7 @@
     "precio": 750
   },
   {
+    "id": "3",
     "tela": "Friza",
     "composicion": ["100% Algodon"],
     "rinde": 0.525,
@@ -21,6 +24,7 @@
     "precio": 1700
   },
   {
+    "id": "4",
     "tela": "Lienzo",
     "composicion": ["100% Algodon"],
     "rinde": 0.52,
@@ -28,6 +32,7 @@
     "precio": 700
   },
   {
+    "id": "5",
     "tela": "Toalla",
     "composicion": ["100% Algodon"],
     "rinde": 0.54,
