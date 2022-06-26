@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const btnAgregarCatalogo = document.querySelector('#agregarCatalogo');
   const btnTripleCatalogo = document.querySelector('#tripleCatalogo');
   const btnVaciarCatalogo = document.querySelector('#vaciarCatalogo');
+  const apiBaseUrl = 'https://62b8d817ff109cd1dc88b9f0.mockapi.io/telas'
   //
 
   function menuMobile() {
@@ -61,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   async function precargarCatalogo() {
-    return await fetch('https://62b8d817ff109cd1dc88b9f0.mockapi.io/telas')
+    return await fetch(apiBaseUrl)
       .then((res) => {
         return res.json();
       })
@@ -129,7 +130,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  function nuevoItemCatalogo(copias = 1) {
+  
+  async function nuevoItemCatalogo(copias = 1) {
     const nuevoItem = {
       tela: '',
       composicion: [],
@@ -149,12 +151,31 @@ document.addEventListener('DOMContentLoaded', () => {
     nuevoItem.ancho = parseFloat(inputAncho.value);
     nuevoItem.precio = parseFloat(inputPrecio.value);
 
-    while (copias > 0) {
+/*    while (copias > 0) {
       datosCatalogo.push(nuevoItem);
       agregarFilaCatalogo(nuevoItem);
       copias--;
-    }
+     }
+
+*/
+    try {
+    await apiAgregarTela(nuevoItem).then(_=> agregarFilaCatalogo(nuevoItem))
     resetearFormCatalogo();
+  
+    } 
+    catch (error) {
+      console.log(error);
+    }
+    
+  }
+
+  async function apiAgregarTela(nuevaTela){
+    const configuracion = { 'method': 'POST',
+    'headers': {
+        'Content-Type': 'application/json'
+    },
+    'body': JSON.stringify(nuevaTela)}
+    return await fetch(apiBaseUrl, configuracion)
   }
 
   function resetearFormCatalogo() {
@@ -196,3 +217,25 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 }); // NO TIENE QUE QUEDAR NADA POR FUERA DE ESTE CIERRE DEL CALLBACK DE DOMCONTENTLOADED
+
+
+
+
+async function obtenerDatos() {
+  const url = 'https://60aab45166f1d000177731ea.mockapi.io/api/usuarios';
+  const lista = document.querySelector("#lista_nombres");
+  lista.innerHTML = "";
+  try {
+      let res = await fetch(url); // GET url
+      let json = await res.json(); // texto json a objeto
+      console.log(json);
+      for (const usuario of json) {
+          let nombre = usuario.nombre;
+          lista.innerHTML += `<ul>${nombre}</ul>`;
+      }
+  } catch (error) {
+      console.log(error);
+  }
+}
+
+obtenerDatos();
