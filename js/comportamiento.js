@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const btnAgregarCatalogo = document.querySelector('#agregarCatalogo');
   const btnTripleCatalogo = document.querySelector('#tripleCatalogo');
   const btnVaciarCatalogo = document.querySelector('#vaciarCatalogo');
+  const btnBorrarFila = document.querySelector('#borrarFila');
   const apiBaseUrl = 'https://62b8d817ff109cd1dc88b9f0.mockapi.io/telas'
   //
 
@@ -95,26 +96,41 @@ document.addEventListener('DOMContentLoaded', () => {
     const rinde = document.createElement('td');
     const ancho = document.createElement('td');
     const precio = document.createElement('td');
+    const borrar = document.createElement('td');
 
     tela.innerText = dato.tela;
     composicion.appendChild(crearListaInput(dato.composicion));
     rinde.innerText = dato.rinde;
     ancho.innerText = dato.ancho;
     precio.innerText = dato.precio;
+    borrar.innerText = dato.borrar;
 
     fila.appendChild(tela);
     fila.appendChild(composicion);
     fila.appendChild(rinde);
     fila.appendChild(ancho);
     fila.appendChild(precio);
+    fila.appendChild(borrar);
 
     const precioOferta = 1000;
     if (dato.precio < precioOferta) {
       fila.classList.add('oferta');
     }
-
     bodyCatalogo.appendChild(fila);
+
+    btnBorrarFila.addEventListener('click', () => {
+      datosCatalogo.length = 0;
+      bodyCatalogo.innerHTML = null;
+    });
+    
   }
+  
+  function borrarFila() {
+    borrar.pop();
+    
+  }
+  
+  document.querySelector("#borrarFila").addEventListener("click", borrarFila);
 
   function crearListaInput(arr) {
     const lista = document.createElement('ul');
@@ -144,12 +160,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const inputRinde = document.querySelector('#rinde');
     const inputAncho = document.querySelector('#ancho');
     const inputPrecio = document.querySelector('#precio');
+    const inputBorrar = document.querySelector('#borrar');
 
     nuevoItem.tela = inputTela.value;
     nuevoItem.composicion = inputComposicion.value.split(',');
     nuevoItem.rinde = parseFloat(inputRinde.value);
     nuevoItem.ancho = parseFloat(inputAncho.value);
     nuevoItem.precio = parseFloat(inputPrecio.value);
+    nuevoItem.borrar = parseFloat(inputBorrar.value);
 
 /*    while (copias > 0) {
       datosCatalogo.push(nuevoItem);
@@ -215,6 +233,8 @@ document.addEventListener('DOMContentLoaded', () => {
       datosCatalogo.length = 0;
       bodyCatalogo.innerHTML = null;
     });
+
+   
   }
 }); // NO TIENE QUE QUEDAR NADA POR FUERA DE ESTE CIERRE DEL CALLBACK DE DOMCONTENTLOADED
 
