@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const btnAgregarCatalogo = document.querySelector('#agregarCatalogo');
   const btnTripleCatalogo = document.querySelector('#tripleCatalogo');
   const btnVaciarCatalogo = document.querySelector('#vaciarCatalogo');
-  const btnBorrarFila = document.querySelector('#borrarFila');
+ // const btnBorrarFila = document.querySelector('#borrarFila');
   const apiBaseUrl = 'https://62b8d817ff109cd1dc88b9f0.mockapi.io/telas'
   //
 
@@ -96,21 +96,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const rinde = document.createElement('td');
     const ancho = document.createElement('td');
     const precio = document.createElement('td');
-    const borrar = document.createElement('td');
+    const botones = document.createElement('td');
 
     tela.innerText = dato.tela;
     composicion.appendChild(crearListaInput(dato.composicion));
     rinde.innerText = dato.rinde;
     ancho.innerText = dato.ancho;
     precio.innerText = dato.precio;
-    borrar.innerText = dato.borrar;
+    botones.innerHTML = "agregar boton de borrado"
+    // borrar.innerText = dato.borrar;
 
     fila.appendChild(tela);
     fila.appendChild(composicion);
     fila.appendChild(rinde);
     fila.appendChild(ancho);
     fila.appendChild(precio);
-    fila.appendChild(borrar);
+    fila.appendChild(botones);
 
     const precioOferta = 1000;
     if (dato.precio < precioOferta) {
@@ -118,19 +119,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     bodyCatalogo.appendChild(fila);
 
-    btnBorrarFila.addEventListener('click', () => {
-      datosCatalogo.length = 0;
-      bodyCatalogo.innerHTML = null;
-    });
+    // btnBorrarFila.addEventListener('click', () => {
+    //   datosCatalogo.length = 0;
+    //   bodyCatalogo.innerHTML = null;
+    // });
     
   }
   
-  function borrarFila() {
-    borrar.pop();
+  // function borrarFila() {
+  //   borrar.pop();
     
-  }
+  // }
   
-  document.querySelector("#borrarFila").addEventListener("click", borrarFila);
+ // document.querySelector("#borrarFila").addEventListener("click", borrarFila);
 
   function crearListaInput(arr) {
     const lista = document.createElement('ul');
@@ -240,22 +241,3 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-
-async function obtenerDatos() {
-  const url = 'https://60aab45166f1d000177731ea.mockapi.io/api/usuarios';
-  const lista = document.querySelector("#lista_nombres");
-  lista.innerHTML = "";
-  try {
-      let res = await fetch(url); // GET url
-      let json = await res.json(); // texto json a objeto
-      console.log(json);
-      for (const usuario of json) {
-          let nombre = usuario.nombre;
-          lista.innerHTML += `<ul>${nombre}</ul>`;
-      }
-  } catch (error) {
-      console.log(error);
-  }
-}
-
-obtenerDatos();
