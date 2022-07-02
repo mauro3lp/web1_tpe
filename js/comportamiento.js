@@ -7,12 +7,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const btnRegistrar = document.querySelector('#registrarse');
   // Variables del Catalogo
   const bodyCatalogo = document.querySelector('#contenidoCatalogo');
-  const datosCatalogo = [];
+  let datosCatalogo = [];
   const btnAgregarCatalogo = document.querySelector('#agregarCatalogo');
   const btnTripleCatalogo = document.querySelector('#tripleCatalogo');
   const btnVaciarCatalogo = document.querySelector('#vaciarCatalogo');
- // const btnBorrarFila = document.querySelector('#borrarFila');
-  const apiBaseUrl = 'https://62b8d817ff109cd1dc88b9f0.mockapi.io/telas'
+  const apiBaseUrl = 'https://62b8d817ff109cd1dc88b9f0.mockapi.io/telas';
   //
 
   function menuMobile() {
@@ -53,8 +52,8 @@ document.addEventListener('DOMContentLoaded', () => {
     return validacion;
   }
 
-  function toggleBotonRegistro(deshabilitado) {
-    btnRegistrar.disabled = deshabilitado;
+  function toggleBotonRegistro(estaDeshabilitado) {
+    btnRegistrar.disabled = estaDeshabilitado;
   }
 
   async function cargarCatalogo() {
@@ -73,6 +72,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function pegarCatalogo(arr) {
+    datosCatalogo = [];
+
     if (Array.isArray(arr) && arr.length > 0) {
       arr.forEach((elemento) => {
         datosCatalogo.push(elemento);
@@ -81,6 +82,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function llenarCatalogo(datos) {
+    bodyCatalogo.innerHTML = '';
+
     if (Array.isArray(datos) && datos.length > 0) {
       datos.forEach((dato) => {
         agregarFilaCatalogo(dato);
@@ -103,8 +106,9 @@ document.addEventListener('DOMContentLoaded', () => {
     rinde.innerText = dato.rinde;
     ancho.innerText = dato.ancho;
     precio.innerText = dato.precio;
-    botones.innerHTML = "agregar boton de borrado"
-    // borrar.innerText = dato.borrar;
+
+    botones.dataset.telaId = dato.id;
+    botones.appendChild(crearBtnBorrar());
 
     fila.appendChild(tela);
     fila.appendChild(composicion);
@@ -118,20 +122,46 @@ document.addEventListener('DOMContentLoaded', () => {
       fila.classList.add('oferta');
     }
     bodyCatalogo.appendChild(fila);
-
-    // btnBorrarFila.addEventListener('click', () => {
-    //   datosCatalogo.length = 0;
-    //   bodyCatalogo.innerHTML = null;
-    // });
-    
   }
-  
-  // function borrarFila() {
-  //   borrar.pop();
-    
-  // }
-  
- // document.querySelector("#borrarFila").addEventListener("click", borrarFila);
+
+  function crearBtnBorrar() {
+    const btn = document.createElement('button');
+    btn.setAttribute('type', 'button');
+    btn.addEventListener('click', eventoBorrarTela);
+    btn.innerText = 'borrar';
+    btn.classList.add('borrar');
+    return btn;
+  }
+
+  function eventoBorrarTela(e) {
+    const btn = e.srcElement;
+    const idTela = btn.parentElement.dataset.telaId;
+    const fila = btn.parentElement.parentElement;
+    borrarTelaApi(idTela).then((_) => {
+      fila.remove();
+      datosCatalogo = datosCatalogo.filter((tela) => tela.id != idTela);
+    });
+  }
+
+  async function borrarTelaApi(id) {
+    return await fetch(`${apiBaseUrl}/${id}`, { method: 'DELETE' });
+  }
+
+  function crearBtnEditar() {
+    const btn = document.createElement('button');
+    btn.setAttribute('type', 'button');
+    btn.addEventListener('click', eventoEditarTela);
+    btn.innerText = 'editar';
+    btn.classList.add('editar');
+    return btn;
+  }
+
+  function eventoEditarTela(e) {
+    const btn = e.srcElement;
+    const idTela = btn.parentElement.dataset.telaId;
+    // abrir modal (idTela)
+    // o convertir fila en inputs
+  }
 
   function crearListaInput(arr) {
     const lista = document.createElement('ul');
@@ -147,7 +177,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  
   async function nuevoItemCatalogo(copias = 1) {
     const nuevoItem = {
       tela: '',
@@ -161,40 +190,35 @@ document.addEventListener('DOMContentLoaded', () => {
     const inputRinde = document.querySelector('#rinde');
     const inputAncho = document.querySelector('#ancho');
     const inputPrecio = document.querySelector('#precio');
-    const inputBorrar = document.querySelector('#borrar');
 
     nuevoItem.tela = inputTela.value;
     nuevoItem.composicion = inputComposicion.value.split(',');
     nuevoItem.rinde = parseFloat(inputRinde.value);
     nuevoItem.ancho = parseFloat(inputAncho.value);
     nuevoItem.precio = parseFloat(inputPrecio.value);
-    nuevoItem.borrar = parseFloat(inputBorrar.value);
 
-/*    while (copias > 0) {
-      datosCatalogo.push(nuevoItem);
-      agregarFilaCatalogo(nuevoItem);
-      copias--;
-     }
-
-*/
     try {
-    await apiAgregarTela(nuevoItem).then(_=> agregarFilaCatalogo(nuevoItem))
-    resetearFormCatalogo();
-  
-    } 
-    catch (error) {
-      console.log(error);
+      while (copias > 0) {
+        await apiAgregarTela(nuevoItem).then((_) => {
+          cargarCatalogo();
+        });
+        copias--;
+      }
+      resetearFormCatalogo();
+    } catch (err) {
+      console.log(err);
     }
-    
   }
 
-  async function apiAgregarTela(nuevaTela){
-    const configuracion = { 'method': 'POST',
-    'headers': {
-        'Content-Type': 'application/json'
-    },
-    'body': JSON.stringify(nuevaTela)}
-    return await fetch(apiBaseUrl, configuracion)
+  async function apiAgregarTela(nuevaTela) {
+    const configuracion = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(nuevaTela),
+    };
+    return await fetch(apiBaseUrl, configuracion);
   }
 
   function resetearFormCatalogo() {
@@ -234,10 +258,5 @@ document.addEventListener('DOMContentLoaded', () => {
       datosCatalogo.length = 0;
       bodyCatalogo.innerHTML = null;
     });
-
-   
   }
 }); // NO TIENE QUE QUEDAR NADA POR FUERA DE ESTE CIERRE DEL CALLBACK DE DOMCONTENTLOADED
-
-
-
