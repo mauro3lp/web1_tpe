@@ -1,29 +1,108 @@
 'use strict';
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', (DOMEvent) => {
   // Variables del captcha
-  const inputCaptcha = document.querySelector('#captcha');
-  const valorCaptcha1 = document.querySelector('#valorCaptcha1');
-  const valorCaptcha2 = document.querySelector('#valorCaptcha2');
-  const btnRegistrar = document.querySelector('#registrarse');
+  let inputCaptcha;
+  let valorCaptcha1;
+  let valorCaptcha2;
+  let btnRegistrar;
   // Variables del Catalogo
-  const bodyCatalogo = document.querySelector('#contenidoCatalogo');
+  let bodyCatalogo;
   let datosCatalogo = [];
-  const btnAgregarCatalogo = document.querySelector('#agregarCatalogo');
-  const btnTripleCatalogo = document.querySelector('#tripleCatalogo');
-  const btnVaciarCatalogo = document.querySelector('#vaciarCatalogo');
+  let btnAgregarCatalogo;
+  let btnTripleCatalogo;
+  let btnVaciarCatalogo;
   const apiBaseUrl = 'https://62b8d817ff109cd1dc88b9f0.mockapi.io/telas';
   const apiUrlConId = (id) => `${apiBaseUrl}/${id}`;
   // Variables del modal
-  const modalContainer = document.querySelector('.modalContainer');
-  const modal = document.querySelector('.modal');
-  const btnModalEditar = document.querySelector('#editarCatalogo');
-  const btnsModalCerrar = document.querySelectorAll('.btnModalCerrar');
-  const inputEditTela = modal.querySelector('#editarTela');
-  const inputEditComposicion = modal.querySelector('#editarComposicion');
-  const inputEditRinde = modal.querySelector('#editarRinde');
-  const inputEditAncho = modal.querySelector('#editarAncho');
-  const inputEditPrecio = modal.querySelector('#editarPrecio');
+  let modalContainer;
+  let btnModalEditar;
+  let btnsModalCerrar;
+  let inputEditTela;
+  let inputEditComposicion;
+  let inputEditRinde;
+  let inputEditAncho;
+  let inputEditPrecio;
   //
+  const navLinks = document.querySelectorAll('.navbar a');
+  navLinks.forEach((link) =>
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const linkElement = e.target;
+      toggleLinks(linkElement);
+      router(linkElement.dataset.targetHtml);
+    })
+  );
+
+  function toggleLinks(linkActivo) {
+    navLinks.forEach((link) => {
+      link.parentElement.classList.remove('activo');
+    });
+    linkActivo.parentElement.classList.add('activo');
+  }
+
+  function router(endpoint) {
+    switch (endpoint) {
+      case '':
+      case 'index':
+      case 'home':
+        spaLoad('_home.html');
+        break;
+      case 'catalogo':
+        spaLoad('_catalogo.html');
+        break;
+      case 'contacto':
+        spaLoad('_contacto.html');
+        break;
+    }
+  }
+
+  const currentEndpoint = DOMEvent.target.baseURI
+    .split('/')
+    .at(-1)
+    .split('.')[0];
+  router(currentEndpoint);
+
+  async function spaLoad(endpoint) {
+    let container = document.querySelector('#SPA');
+    container.innerHTML = '<h1>Loading...</h1>';
+
+    const url = 'http://localhost:5500/' + endpoint;
+
+    fetch(url)
+      .then((res) => res.text())
+      .then((html) => {
+        container.innerHTML = html;
+      })
+      .then((_) => {
+        postRouter(endpoint);
+      })
+      .catch((err) => {
+        container.innerHTML = `<h1>Error: ${err}</h1>`;
+      });
+  }
+
+  function postRouter(endpoint) {
+    switch (endpoint) {
+      case 'home.html':
+        window.history.pushState({}, '', 'home');
+        break;
+
+      case '_catalogo.html':
+        window.history.pushState({}, '', 'catalogo');
+        comportamientoCatalogo();
+        break;
+
+      case '_contacto.html':
+        window.history.pushState({}, '', 'contacto');
+        comportamientoContacto();
+
+        break;
+
+      default:
+        window.history.pushState({}, '', 'error');
+        break;
+    }
+  }
 
   function menuMobile() {
     const hamburguesa = document.querySelector('.hamburguesa');
@@ -321,7 +400,12 @@ document.addEventListener('DOMContentLoaded', () => {
     form.reset();
   }
 
-  if (inputCaptcha) {
+  function comportamientoContacto() {
+    inputCaptcha = document.querySelector('#captcha');
+    valorCaptcha1 = document.querySelector('#valorCaptcha1');
+    valorCaptcha2 = document.querySelector('#valorCaptcha2');
+    btnRegistrar = document.querySelector('#registrarse');
+
     generarCaptcha();
 
     inputCaptcha.addEventListener('input', (e) => {
@@ -336,7 +420,22 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  if (bodyCatalogo) {
+  function comportamientoCatalogo() {
+    // Variables del Catalogo
+    bodyCatalogo = document.querySelector('#contenidoCatalogo');
+    btnAgregarCatalogo = document.querySelector('#agregarCatalogo');
+    btnTripleCatalogo = document.querySelector('#tripleCatalogo');
+    btnVaciarCatalogo = document.querySelector('#vaciarCatalogo');
+    // Variables del modal
+    modalContainer = document.querySelector('.modalContainer');
+    btnModalEditar = document.querySelector('#editarCatalogo');
+    btnsModalCerrar = document.querySelectorAll('.btnModalCerrar');
+    inputEditTela = document.querySelector('#editarTela');
+    inputEditComposicion = document.querySelector('#editarComposicion');
+    inputEditRinde = document.querySelector('#editarRinde');
+    inputEditAncho = document.querySelector('#editarAncho');
+    inputEditPrecio = document.querySelector('#editarPrecio');
+
     cargarCatalogo();
 
     btnAgregarCatalogo.addEventListener('click', (e) => {

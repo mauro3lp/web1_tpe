@@ -63,7 +63,7 @@ https://5f8sd3342342ca.mockapi.io **/api/v1**** /cervezas**
 
 **OPCIONALES**
 
-- [ ] **SPA / Partial Render** **(+2)** Usar AJAX para la navegación de la página (técnica de partial render). La página no debe refrescarse completamente, cuando hago click en un link de la navigation bar se refresca sólo la porción de la información que cambia.
+- [x] **SPA / Partial Render** **(+2)** Usar AJAX para la navegación de la página (técnica de partial render). La página no debe refrescarse completamente, cuando hago click en un link de la navigation bar se refresca sólo la porción de la información que cambia.
 - [ ] **Paginación (+2)**: se debe poder traer la información del servicio rest de forma paginada desde el servidor. Leer documentacion [https://www.mockapi.io/docs](https://www.mockapi.io/docs)
  Recomendación: solo botones &quot;anterior&quot; y &quot;siguiente&quot;.
 - [x] **(OPCIONAL +1)** Debe haber un botón que permita crear varios ítems automáticamente (al menos 3 items), esos datos deberán agregarse en el servicio y verse en la tabla.
