@@ -57,7 +57,7 @@ https://5f8sd3342342ca.mockapi.io **/api/v1**** /cervezas**
 - [x] La tabla se debe cargar automáticamente al mostrarse en la página: Al entrar por el nav a la página que tiene la tabla, automáticamente debe mostrarse la tabla cargada sin que el usuario tenga que hacer ningún click adicional, con los mismos datos que inicialmente existen en el servicio rest.
 - [x] El formulario que agrega información a la tabla debe mantener sincronizado el servicio. Estos datos se deben agregar usando la API Rest.
 - [x] Permitir eliminar filas de la tabla de a una. Cada fila tiene que tener una forma de indicarle &quot;Borrar&quot; que elimine la fila y el elemento correspondiente del servicio.
-- [ ] Permitir editar filas de la tabla individualmente de alguna forma. Cada fila tiene que tener una forma de indicarle &quot;Editar&quot; que permita editar los valores de esa fila y los actualice en el servicio.
+- [x] Permitir editar filas de la tabla individualmente de alguna forma. Cada fila tiene que tener una forma de indicarle &quot;Editar&quot; que permita editar los valores de esa fila y los actualice en el servicio.
 
 - **Limitar tamaño de imágenes y peso del sitio. La carpeta completa del sitio no puede superar los 5 Mb.**
 
@@ -66,7 +66,7 @@ https://5f8sd3342342ca.mockapi.io **/api/v1**** /cervezas**
 - [ ] **SPA / Partial Render** **(+2)** Usar AJAX para la navegación de la página (técnica de partial render). La página no debe refrescarse completamente, cuando hago click en un link de la navigation bar se refresca sólo la porción de la información que cambia.
 - [ ] **Paginación (+2)**: se debe poder traer la información del servicio rest de forma paginada desde el servidor. Leer documentacion [https://www.mockapi.io/docs](https://www.mockapi.io/docs)
  Recomendación: solo botones &quot;anterior&quot; y &quot;siguiente&quot;.
-- [ ] **(OPCIONAL +1)** Debe haber un botón que permita crear varios ítems automáticamente (al menos 3 items), esos datos deberán agregarse en el servicio y verse en la tabla.
+- [x] **(OPCIONAL +1)** Debe haber un botón que permita crear varios ítems automáticamente (al menos 3 items), esos datos deberán agregarse en el servicio y verse en la tabla.
 - [ ] **(OPCIONAL +1)** Agregar filtros de búsqueda en la tabla desde JS (local). Al filtrar los datos, se mostrarán solo los datos que cumplan ese criterio, los demás datos no se ven, pero no se borran realmente, se pueden ver al modificar el filtro de búsqueda. Sugerimos dos formas de hacer el filtro (otras opciones debatir con los docentes):
   - filtros por combo (tag select) para las columnas con opciones fijas
   - filtrar con un input por al menos una columna.

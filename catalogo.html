@@ -171,7 +171,7 @@
 
         </tbody>
       </table>
-      <button type="reset" class="btn btnVaciar" id="vaciarCatalogo">Vaciar catalogo</button>
+      <button type="reset" class="btn btnVaciar" id="vaciarCatalogo" disabled>Vaciar catalogo</button>
 
       <form id="formCatalogo">
         <div class="formInput">
@@ -201,6 +201,42 @@
       </form>
 
     </article>
+
+    <div class="modalContainer"  >
+      <div class="modal">
+        <a class="xCerrar btnModalCerrar"></a>
+        <h1 class="modalTitle centrar
+        ">Editar</h1>
+        <form id="formEditarCatalogo">
+          <div class="formInput">
+            <label for="editarTela">Tela</label>
+            <input type="text" id="editarTela">
+          </div>
+          <div class="formInput">
+            <label for="editarComposicion">Composicion</label>
+            <input type="text" id="editarComposicion">
+          </div>
+          <div class="formInput">
+            <label for="editarRinde">Rinde</label>
+            <input type="text" id="editarRinde">
+          </div>
+          <div class="formInput">
+            <label for="editarAncho">Ancho</label>
+            <input type="text" id="editarAncho">
+          </div>
+          <div class="formInput">
+            <label for="editarPrecio">Precio</label>
+            <input type="text" id="editarPrecio">
+          </div>
+          <div class="flexColRow">
+            <input class="btn btnEnviar" type="button" value="Editar" id="editarCatalogo">
+            <input class="btn btnEnviar btnModalCerrar" type="button" value="Cancelar" id="cancelar">
+          </div>
+        </form>
+
+      </div>
+    </div>
+
   </main>
 
   <footer>

@@ -12,6 +12,17 @@ document.addEventListener('DOMContentLoaded', () => {
   const btnTripleCatalogo = document.querySelector('#tripleCatalogo');
   const btnVaciarCatalogo = document.querySelector('#vaciarCatalogo');
   const apiBaseUrl = 'https://62b8d817ff109cd1dc88b9f0.mockapi.io/telas';
+  const apiUrlConId = (id) => `${apiBaseUrl}/${id}`;
+  // Variables del modal
+  const modalContainer = document.querySelector('.modalContainer');
+  const modal = document.querySelector('.modal');
+  const btnModalEditar = document.querySelector('#editarCatalogo');
+  const btnsModalCerrar = document.querySelectorAll('.btnModalCerrar');
+  const inputEditTela = modal.querySelector('#editarTela');
+  const inputEditComposicion = modal.querySelector('#editarComposicion');
+  const inputEditRinde = modal.querySelector('#editarRinde');
+  const inputEditAncho = modal.querySelector('#editarAncho');
+  const inputEditPrecio = modal.querySelector('#editarPrecio');
   //
 
   function menuMobile() {
@@ -109,6 +120,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     botones.dataset.telaId = dato.id;
     botones.appendChild(crearBtnBorrar());
+    botones.appendChild(crearBtnEditar());
+    botones.classList.add('botonesTabla');
 
     fila.appendChild(tela);
     fila.appendChild(composicion);
@@ -128,8 +141,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const btn = document.createElement('button');
     btn.setAttribute('type', 'button');
     btn.addEventListener('click', eventoBorrarTela);
-    btn.innerText = 'borrar';
-    btn.classList.add('borrar');
+    btn.innerText = 'Borrar';
+    btn.classList.add('btnTabla');
     return btn;
   }
 
@@ -144,23 +157,99 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   async function borrarTelaApi(id) {
-    return await fetch(`${apiBaseUrl}/${id}`, { method: 'DELETE' });
+    return await fetch(apiUrlConId(id), { method: 'DELETE' });
   }
 
   function crearBtnEditar() {
     const btn = document.createElement('button');
     btn.setAttribute('type', 'button');
     btn.addEventListener('click', eventoEditarTela);
-    btn.innerText = 'editar';
-    btn.classList.add('editar');
+    btn.innerText = 'Editar';
+    btn.classList.add('btnTabla');
     return btn;
   }
 
   function eventoEditarTela(e) {
     const btn = e.srcElement;
     const idTela = btn.parentElement.dataset.telaId;
-    // abrir modal (idTela)
-    // o convertir fila en inputs
+    precargarModal(idTela);
+  }
+
+  function toggleModal() {
+    modalContainer.classList.toggle('mostrarModal');
+  }
+
+  function precargarModal(id) {
+    const tela = datosCatalogo.find((obj) => obj.id == id);
+    if (!tela?.id) {
+      throw new Error(`No se encontro la tela con el id = ${id}`);
+    }
+
+    inputEditTela.placeholder = tela.tela;
+    inputEditComposicion.placeholder = tela.composicion.join(', ');
+    inputEditRinde.placeholder = tela.rinde;
+    inputEditAncho.placeholder = tela.ancho;
+    inputEditPrecio.placeholder = tela.precio;
+    btnModalEditar.dataset.telaId = id;
+
+    toggleModal();
+  }
+
+  function eventoEditarTelaApi(e) {
+    const btn = e.srcElement;
+    const telaId = btn.dataset.telaId;
+    const tela = {};
+
+    if (
+      inputEditTela.value &&
+      inputEditTela.placeholder != inputEditTela.value
+    ) {
+      tela.tela = inputEditTela.value;
+    }
+    if (
+      inputEditComposicion.value &&
+      inputEditComposicion.placeholder != inputEditComposicion.value
+    ) {
+      tela.composicion = parsearInputComposicion(inputEditComposicion.value);
+    }
+    if (
+      inputEditRinde.value &&
+      inputEditRinde.placeholder != inputEditRinde.value
+    ) {
+      tela.rinde = inputEditRinde.value;
+    }
+    if (
+      inputEditAncho.value &&
+      inputEditAncho.placeholder != inputEditAncho.value
+    ) {
+      tela.ancho = inputEditAncho.value;
+    }
+    if (
+      inputEditPrecio.value &&
+      inputEditPrecio.placeholder != inputEditPrecio.value
+    ) {
+      tela.precio = inputEditPrecio.value;
+    }
+
+    if (Object.keys(tela).length != 0) {
+      editarTelaApi(telaId, tela).then((_) => {
+        document.querySelector('#formEditarCatalogo')?.reset();
+        cargarCatalogo();
+        toggleModal();
+      });
+    }
+  }
+
+  async function editarTelaApi(id, tela) {
+    const configuracion = {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(tela),
+    };
+    console.log(configuracion.body);
+    return await fetch(apiUrlConId(id), configuracion);
   }
 
   function crearListaInput(arr) {
@@ -192,7 +281,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const inputPrecio = document.querySelector('#precio');
 
     nuevoItem.tela = inputTela.value;
-    nuevoItem.composicion = inputComposicion.value.split(',');
+    nuevoItem.composicion = parsearInputComposicion(inputComposicion.value);
     nuevoItem.rinde = parseFloat(inputRinde.value);
     nuevoItem.ancho = parseFloat(inputAncho.value);
     nuevoItem.precio = parseFloat(inputPrecio.value);
@@ -208,6 +297,12 @@ document.addEventListener('DOMContentLoaded', () => {
     } catch (err) {
       console.log(err);
     }
+  }
+
+  function parsearInputComposicion(rawValue) {
+    let composicion = rawValue.split(',');
+    composicion = composicion.map((str) => str.trim());
+    return composicion;
   }
 
   async function apiAgregarTela(nuevaTela) {
@@ -258,5 +353,11 @@ document.addEventListener('DOMContentLoaded', () => {
       datosCatalogo.length = 0;
       bodyCatalogo.innerHTML = null;
     });
+
+    btnsModalCerrar.forEach((btn) => {
+      btn.addEventListener('click', toggleModal);
+    });
+
+    btnModalEditar.addEventListener('click', eventoEditarTelaApi);
   }
 }); // NO TIENE QUE QUEDAR NADA POR FUERA DE ESTE CIERRE DEL CALLBACK DE DOMCONTENTLOADED

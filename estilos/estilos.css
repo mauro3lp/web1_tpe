@@ -226,6 +226,112 @@ td li {
   flex-direction: column;
   gap: 2%;
 }
+
+.botonesTabla {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.2rem 0.4rem;
+}
+
+.btnTabla {
+  font-size: 0.6rem;
+  background-color: var(--color-lightest);
+
+  border-color: var(--color-darkest);
+  color: var(--color-black);
+  align-self: center;
+  cursor: pointer;
+}
+
+/* #region Modal */
+
+.modalContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+
+  display: none;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+  background: hsla(0, 0%, 0%, 0.4);
+}
+
+.modalContainer.mostrarModal {
+  display: flex;
+}
+
+.modal {
+  width: 90vw;
+  padding: 4rem 2rem;
+  border-radius: 0.8rem;
+  background-color: var(--color-light);
+  position: relative;
+
+  overflow: hidden;
+}
+
+.modalTitle {
+  font-size: 3.2rem;
+}
+
+.modalText {
+  padding: 0 4rem;
+  margin-top: 4rem;
+
+  font-size: 1.6rem;
+  line-height: 2;
+}
+
+a,
+a:link {
+  font-family: inherit;
+  text-decoration: none;
+}
+
+a:focus {
+  outline: none;
+}
+
+.xCerrar {
+  width: 4rem;
+  height: 4rem;
+  border: 1px solid hsla(0, 0%, 100%, 0.2);
+  border-radius: 100rem;
+
+  color: inherit;
+  font-size: 2.2rem;
+
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  transition: 0.2s;
+}
+
+.xCerrar::before {
+  content: '×';
+}
+
+.xCerrar:hover,
+.xCerrar:focus {
+  background: var(--color-highlight);
+  border-color: var(--color-highlight);
+  transform: translateY(-0.2rem);
+}
+
+/* #endregion Modal */
+
 /* #endregion Catalogo */
 
 /* #region Contacto */
@@ -290,11 +396,15 @@ form {
   background-color: var(--color-light);
 }
 
-.btnEnviar:disabled {
-  background-color: var(--color-lightest);
+button:disabled,
+.btn:disabled {
   border: none;
   cursor: default;
   filter: blur(0.07em);
+}
+
+.btnEnviar:disabled {
+  background-color: var(--color-lightest);
 }
 
 /* #endregion Contacto */
@@ -365,6 +475,18 @@ form {
 
   .flexColRow {
     flex-direction: row;
+  }
+
+  .botonesTabla {
+    padding: 0.5rem 1rem;
+    height: auto;
+  }
+
+  .btnTabla {
+    font-size: 1rem;
+  }
+  .modal {
+    width: 40rem;
   }
 
   /* #endregion Catalogo */
