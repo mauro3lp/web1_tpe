@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', (DOMEvent) => {
   // Variables del Catalogo
   let bodyCatalogo;
   let datosCatalogo = [];
-  let btnAgregarCatalogo;
+  let formCatalogo;
   let btnTripleCatalogo;
   let btnVaciarCatalogo;
   const apiBaseUrl = 'https://62b8d817ff109cd1dc88b9f0.mockapi.io/telas';
@@ -275,6 +275,8 @@ document.addEventListener('DOMContentLoaded', (DOMEvent) => {
   }
 
   function eventoEditarTelaApi(e) {
+    const modalError = document.querySelector('#modalError');
+    modalError.innerText = '';
     const btn = e.srcElement;
     const telaId = btn.dataset.telaId;
     const tela = {};
@@ -316,6 +318,8 @@ document.addEventListener('DOMContentLoaded', (DOMEvent) => {
         cargarCatalogo();
         toggleModal();
       });
+    } else {
+      modalError.innerText = 'Es necesario completar al menos un campo';
     }
   }
 
@@ -405,6 +409,7 @@ document.addEventListener('DOMContentLoaded', (DOMEvent) => {
     valorCaptcha1 = document.querySelector('#valorCaptcha1');
     valorCaptcha2 = document.querySelector('#valorCaptcha2');
     btnRegistrar = document.querySelector('#registrarse');
+    const formulario = document.querySelector('#contacto');
 
     generarCaptcha();
 
@@ -414,16 +419,17 @@ document.addEventListener('DOMContentLoaded', (DOMEvent) => {
       toggleBotonRegistro(!validacion);
     });
 
-    btnRegistrar.addEventListener('click', (e) => {
+    formulario.addEventListener('submit', (e) => {
       e.preventDefault();
-      window.location.href = './contacto.html';
+      formulario.reset();
+      // window.location.href = './contacto.html';
     });
   }
 
   function comportamientoCatalogo() {
     // Variables del Catalogo
     bodyCatalogo = document.querySelector('#contenidoCatalogo');
-    btnAgregarCatalogo = document.querySelector('#agregarCatalogo');
+    formCatalogo = document.querySelector('#formCatalogo');
     btnTripleCatalogo = document.querySelector('#tripleCatalogo');
     btnVaciarCatalogo = document.querySelector('#vaciarCatalogo');
     // Variables del modal
@@ -438,7 +444,7 @@ document.addEventListener('DOMContentLoaded', (DOMEvent) => {
 
     cargarCatalogo();
 
-    btnAgregarCatalogo.addEventListener('click', (e) => {
+    formCatalogo.addEventListener('submit', (e) => {
       e.preventDefault();
       nuevoItemCatalogo();
     });

@@ -145,26 +145,26 @@
     <form id="formCatalogo">
       <div class="formInput">
         <label for="tela">Tela</label>
-        <input type="text" id="tela" value="debug">
+        <input type="text" id="tela" required>
       </div>
       <div class="formInput">
         <label for="composicion">Composicion</label>
-        <input type="text" id="composicion" value="20% A, 30% B">
+        <input type="text" id="composicion" required>
       </div>
       <div class="formInput">
         <label for="rinde">Rinde</label>
-        <input type="text" id="rinde" value="12">
+        <input type="text" id="rinde" required>
       </div>
       <div class="formInput">
         <label for="ancho">Ancho</label>
-        <input type="text" id="ancho" value="13">
+        <input type="text" id="ancho" required>
       </div>
       <div class="formInput">
         <label for="precio">Precio</label>
-        <input type="text" id="precio" value="14">
+        <input type="text" id="precio" required>
       </div>
       <div class="flexColRow">
-        <input class="btn btnEnviar" type="button" value="Agregar" id="agregarCatalogo">
+        <input class="btn btnEnviar" type="submit" value="Agregar" id="agregarCatalogo">
         <input class="btn btnEnviar" type="button" value="x3" id="tripleCatalogo">
       </div>
     </form>
@@ -197,6 +197,7 @@
           <label for="editarPrecio">Precio</label>
           <input type="text" id="editarPrecio">
         </div>
+        <p class="modalText" id="modalError"></p>
         <div class="flexColRow">
           <input class="btn btnEnviar" type="button" value="Editar" id="editarCatalogo">
           <input class="btn btnEnviar btnModalCerrar" type="button" value="Cancelar" id="cancelar">
