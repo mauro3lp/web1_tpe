@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', (DOMEvent) => {
 
   function postRouter(endpoint) {
     switch (endpoint) {
-      case 'home.html':
+      case '_home.html':
         window.history.pushState({}, '', 'home');
         break;
 
